@@ -1,0 +1,75 @@
+__        ___           _     _       _ _     ___ 
+\ \      / / |__   __ _| |_  (_)___  (_) |_  |__ \
+ \ \ /\ / /| '_ \ / _` | __| | / __| | | __|   / /
+  \ V  V / | | | | (_| | |_  | \__ \ | | |_   |_| 
+   \_/\_/  |_| |_|\__,_|\__| |_|___/ |_|\__|  (_) 
+                                                  
+
+OptimalL1Isolation is a TMVA-based interactive machine learning macro to
+optimize isolation criteria for electron/photon candidates in the 
+hardware trigger to maximally reduce rates (which are primarily determined 
+by the high false positive) while maintaining a high signal efficiency.
+For a quick introduction to the issues involved in hardware triggering 
+at the Large Hadron Collider, specifically the CMS detector, please see 
+the following article 
+
+http://cds.cern.ch/record/1556311
+
+
+ _____           _                     _                 _ 
+|_   _|__     __| | _____      ___ __ | | ___   __ _  __| |
+  | |/ _ \   / _` |/ _ \ \ /\ / / '_ \| |/ _ \ / _` |/ _` |
+  | | (_) | | (_| | (_) \ V  V /| | | | | (_) | (_| | (_| |
+  |_|\___/   \__,_|\___/ \_/\_/ |_| |_|_|\___/ \__,_|\__,_|
+                                                           
+
+git clone git://github.com/kalanand/OptimalL1Isolation
+
+
+ _   _                 _                           
+| | | | _____      __ | |_ ___    _ __ _   _ _ __  
+| |_| |/ _ \ \ /\ / / | __/ _ \  | '__| | | | '_ \ 
+|  _  | (_) \ V  V /  | || (_) | | |  | |_| | | | |
+|_| |_|\___/ \_/\_/    \__\___/  |_|   \__,_|_| |_|
+                                                   
+You need to have a recent version of CERN ROOT (http://root.cern.ch) 
+program installed. 
+
+The main executable for training and cross validation is called 
+'TMVAClassification.C', which can be run on command-line in a 
+terminal window using the command 
+
+root TMVAClassification.C
+
+After performing training and cross validation steps, a GUI will pop 
+out to interactively plot distributions of the input and output to 
+the machine learning, and other useful quantities like the correlation 
+coefficients and ROC curve (signal efficiency vs false positive). 
+You can configure the names of the input and output files, the machine 
+learning method (e.g., BDT, neural network, ...), input features/variables, 
+specific classifier options, etc. 
+
+The default code uses the following four features
+
+- Isolation energy sum in 12 x 12 calorimeter regions around the E/gamma object 
+- Isolation energy sum in 4 x 4 calorimeter regions around the E/gamma object
+- L-shed isolation, defined in the article cited above
+- PUM0 == a global proxy for the pileup energy deposition
+
+The classifier output is saved in XML format in the 'weights' subdirectory 
+while the plots are conveniently saved in the 'plots' subdirectory.
+
+
+ _____         _           _           _       _      _        _ _     
+|_   _|__  ___| |__  _ __ (_) ___ __ _| |   __| | ___| |_ __ _(_) |___ 
+  | |/ _ \/ __| '_ \| '_ \| |/ __/ _` | |  / _` |/ _ \ __/ _` | | / __|
+  | |  __/ (__| | | | | | | | (_| (_| | | | (_| |  __/ || (_| | | \__ \
+  |_|\___|\___|_| |_|_| |_|_|\___\__,_|_|  \__,_|\___|\__\__,_|_|_|___/
+                                                                       
+                                    
+Author : Kalanand Mishra borrowing heavily from TMVA examples 
+Home Page : https://github.com/kalanand/OptimalL1Isolation
+Operating System : LINUX/UNIX
+Programming Language : C++ 
+Intended Audience : Science/Research
+
